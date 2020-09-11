@@ -89,9 +89,9 @@ def race(a_miles,a_speed,b_miles,b_speed):
     #time == distance / speed
     atime = a_miles/a_speed
     btime = b_miles/b_speed
-    if atime > btime:
+    if atime < btime:
         return 0
-    elif btime>atime:
+    elif btime < atime:
         return 1
     else:
         return -1
@@ -143,8 +143,13 @@ def whichAssingmentToWorkOn(assingment1,assingment2,assingment3):
 
 
     """
-    pass
-
+    if assingment1[1] < assingment2[1] and assingment1[1] < assingment3[1]:
+        return assingment1[0]
+    elif assingment2[1] < assingment1[1] and assingment2[1] < assingment3[1]:
+        return assingment2[0]
+    else:
+        return assingment3[0]
+    
 def didIMakeHonorRoll(gpa,creditHours,lowestGrade):
     """
     To make the honor roll at Greendale Community College you have to fufill 3 criteria
@@ -153,7 +158,13 @@ def didIMakeHonorRoll(gpa,creditHours,lowestGrade):
     - The lowest grade you can get is a B-
     given a list with the students gpa, the number of credit hours they took and the lowest grade they got
     return wether or not the are on the honor roll"""
-    pass
+    if gpa >= 3.7 and creditHours >= 12:
+        if lowestGrade == 'B-' or lowestGrade == 'B' or lowestGrade == 'B+' or lowestGrade == 'A-' or lowestGrade == 'A' or lowestGrade == 'A+':
+            return True
+        else:
+            return False
+    else: 
+        return False
 
 def gradeToGetAnA(currentGrade,weightOfFinal):
     """
