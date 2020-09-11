@@ -173,7 +173,9 @@ def gradeToGetAnA(currentGrade,weightOfFinal):
     the minimum score needed to get a 93% in the class. Given what your grade currently is
     and what percentage of your grade the final is worth, find the minimum score needed for an A
     (It should be in probability terms so 100% would be 1. 50% would be .5, 25% would be .25 etc"""
-    pass
+    # final grade == (weightOfFinal * examGrade) + currentGrade
+    # examGrade == (finalGrade - CurrentGrade)/weightOfFinal
+    #return (.93 - currentGrade)/weightOfFinal
 
 
 def squarea(l,w):
