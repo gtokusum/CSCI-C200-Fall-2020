@@ -185,7 +185,7 @@ def squarea(l,w):
     Input: 2 numbers
     Returns: Number
     """
-    pass
+    return l*w
 
 def midlist(list1):
     """
@@ -208,7 +208,10 @@ def twenty_four_twelve(hour,am_pm):
     Input: hour (int), am_pm (str, "am" or "pm")
     Returns: hour in 24-hour time (int)
     """
-    pass
+    if am_pm == 'pm':
+        return hour + 12
+    else:
+        return hour
 
 
 def speed(d, t):
@@ -218,7 +221,7 @@ def speed(d, t):
     OUTPUT speed 
     """
     # TODO: Implement function
-    pass
+    return d/t
 
 def distance (s, t):
     """
@@ -227,7 +230,7 @@ def distance (s, t):
     OUTPUT distance
     """
     # TODO: Implement function
-    pass
+    return s*t
 
 
 def time (s, d):
@@ -237,7 +240,7 @@ def time (s, d):
     OUTPUT time
     """
     # TODO: Implement function
-    pass
+    return d/s
 
 def hours_to_min(hours):
     """
@@ -246,7 +249,7 @@ def hours_to_min(hours):
     OUTPUT minutes
     """
     # TODO: Implement function
-    pass
+    return hours * 60
 
 def min_to_sec(min):
     """
@@ -255,7 +258,7 @@ def min_to_sec(min):
     OUTPUT seconds
     """
     # TODO: Implement function
-    pass
+    return min * 60
 
 
 def feet_to_mile(feet):
@@ -265,7 +268,7 @@ def feet_to_mile(feet):
     OUTPUT miles
     """
     # TODO: Implement function
-    pass
+    return feet / 5280
 
 def miles_to_kilometers(miles):
     """
