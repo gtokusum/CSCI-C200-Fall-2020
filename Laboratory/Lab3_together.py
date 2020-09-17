@@ -49,7 +49,7 @@ def driving_time(miles,speed):
     Inputs: miles (int), speed (int)
     Returns: time (int in hours)
     """
-    pass
+    return miles / speed
 
 def race(a_miles,a_speed,b_miles,b_speed):
     """
@@ -57,19 +57,35 @@ def race(a_miles,a_speed,b_miles,b_speed):
     Inputs: a_miles (miles), a_speed (mph), b_miles (miles), b_speed (mph)
     Returns: 0 if player A arrives first, 1 if player B arrives first, -1 if equal
     """
-    pass
+    playerA = driving_time(a_miles, a_speed)
+    playerB = driving_time(b_miles, b_speed)
+    if playerA > playerB: #if the time of playerA is greater than time of playerB
+        return 1
+    elif playerA == playerB:
+        return -1
+    else:
+        return 0
 
 def countLetters(letters, theLetter):
     """
     Given a string of letters and the letter you are looking for, return the number of times that happens.
     """
-    pass
+    result = 0
+    for index in range(len(letters)):
+        singleLetter = letters[index] # getting letter at specific index
+        if theLetter == singleLetter:
+            result = result + 1 # result += 1
+    return result
 
 def countLetters2(letters, theLetter):
     """
     Given a string of letters and the letter you are looking for, return the number of times that happens.
     """
-    pass
+    result = 0
+    for singleLetter in letters:
+        if singleLetter == theLetter:
+            result += 1
+    return result
 
 
 def myTestString(func, params):
