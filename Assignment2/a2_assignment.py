@@ -3,7 +3,14 @@
 #RETURN change in speed as integer
 def speed(s):
 #TO DO Implement function
-    pass
+    SpeedValue = 1
+    if s >= 55:
+        SpeedValue = 5
+    elif s < 55 and s > 30:
+        SpeedValue = 0
+    else:
+        SpeedValue = -5
+    return SpeedValue
 
 
 
@@ -12,7 +19,7 @@ def speed(s):
 #RETURN temp in Celcius float
 def F_C(t):
 #TO DO Implement function
-    pass
+    return t*1.8+32
 
 #a2_3
 #You cannot use Python's max function
@@ -21,7 +28,11 @@ def F_C(t):
 #RETURN maximum of the two
 def max(x,y):
 #TO DO Implement function
-    pass
+    if x > y:
+        return x
+    else:
+        return y
+
 
 #You cannot use Python's sum function
 #You must use a bounded loop
@@ -29,7 +40,10 @@ def max(x,y):
 #RETURN the average
 def ave(xlst):
 #TO DO Implement function
-    pass
+    AVERAGE = 0
+    for i in xlst:
+        AVERAGE += i
+    return AVERAGE / len(xlst)
 
 #You must use your max function
 #You must use a bounded loop
@@ -37,5 +51,9 @@ def ave(xlst):
 #RETURN maximum number in list
 def max_list(xlst):
 #TO DO Implement function
-    pass
+    maximum = 0
+    for i in xlst:
+        maximum = max(maximum,i)
+    return maximum
+    
 
