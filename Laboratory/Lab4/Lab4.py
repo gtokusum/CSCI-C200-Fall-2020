@@ -45,7 +45,13 @@ def getIndexOfNumbers(theList,numsToIndex):
     numsToIndex: [6,5]
     should return [3,1] (since 6 is the third index and 5 is the first)
     """
-    pass
+    indexResult = []
+    for num in numsToIndex:
+        for i in range(len(theList)):
+            value = theList[i]
+            if num == value :
+                indexResult += [i]
+    return indexResult
 
 
 def sumsOfInnerList(listOfLists):
@@ -56,7 +62,15 @@ def sumsOfInnerList(listOfLists):
     [[1,2,3],[4,5,6],[7,8,9]]
     [6,15,24] 
     """
-    pass
+    finalList =[]
+    for innerList in listOfLists:
+        innerSum = 0 
+        for num in innerList:
+            innerSum += num
+        finalList += [innerSum]
+
+    return finalList
+    
 
 
 def getSumByindex(listOfLists):
@@ -68,7 +82,7 @@ def getSumByindex(listOfLists):
     [12, 15, 18] 
     where 1+4+7 = 12, 2+5+8 = 15, 3+6+9 = 18 
     """
-    pass
+    
 
 def deleteChar(string, chars):
     """
