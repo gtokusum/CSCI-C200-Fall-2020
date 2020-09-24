@@ -99,7 +99,15 @@ def deleteChar(string, chars):
     Ex.
     ("CSCI-C 200", ["C"]) should return "SI- 200"
     """
-    pass
+    result  = ''
+    for s in string:
+        validChar = True
+        for c in chars:
+            if c == s :
+                validChar = False
+        if validChar:
+            result += s 
+    return result
 
 def targetSum(listNumbers,target):
     """ 
