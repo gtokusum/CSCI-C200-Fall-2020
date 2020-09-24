@@ -82,7 +82,15 @@ def getSumByindex(listOfLists):
     [12, 15, 18] 
     where 1+4+7 = 12, 2+5+8 = 15, 3+6+9 = 18 
     """
-    
+    finalList = []
+    lengthOfList = len(listOfLists[0])
+    for i in range(lengthOfList):
+        currentSum = 0
+        for innerList in listOfLists:
+            valueAtPos = innerList[i] 
+            currentSum += valueAtPos
+        finalList += [currentSum]
+    return finalList
 
 def deleteChar(string, chars):
     """
