@@ -119,7 +119,13 @@ def targetSum(listNumbers,target):
 
     Assume you will always produce a value.
     """
-    pass
+    for i in range(len(listNumbers)):
+        
+        for j in range(i,len(listNumbers)):
+            curSum = listNumbers[i] + listNumbers[j]
+            if curSum == target:
+                return (i,j)
+                
 
 
 def validPassword(password):
@@ -135,3 +141,4 @@ def validPassword(password):
     """
     pass
 
+# isupper(), islower(), isdigit() --> tools needed for this function 
