@@ -6,11 +6,17 @@ def findTheEvens(theList):
       - theList: a list of integers
     """
     evenList = []
-    for i in theList:
-        if i % 2 == 0:
-            evenList.append(i)
+    # for i in theList: goes through values
+       
+    for j in range(len(theList)):
+        itemAtVaule = theList[j] #accessing the list at the j index/position
+        # determine if the number is even
+        # Modulo of a number ==> %
+        # 5 % 2 == 1 --> gives remainder
+        if itemAtVaule % 2 == 0:
+            evenList = evenList + [itemAtVaule]
         else:
-            continue
+            pass
     return evenList
 
 
@@ -23,8 +29,12 @@ def findTheDivisibles(theList, theNumber):
     - theList: a list of integers
     - theNumber: An integer
     """
-    pass
-
+    divisibleList = []
+    for i in range(len(theList)):
+        value = theList[i]
+        if value % theNumber ==0:
+            divisibleList += [value]
+    return divisibleList
 
 
 def getIndexOfNumbers(theList,numsToIndex):
