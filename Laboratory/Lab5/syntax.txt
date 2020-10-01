@@ -11,7 +11,7 @@ def find_error1():
         if len(elem) > 0:
             for c in elem:
                 my_sum += c
-        elif len(elem) == 0
+        elif len(elem) == 0:
             pass
         elif type(elem) == str:
             pass
@@ -36,10 +36,10 @@ def find_error2():
     elif yellow_flag:
         status = "You can start your vehicle, and get going only when the FLAG turns green"
     
-    else
-    status = "Please wait till the flag turn green."
+    else:
+        status = "Please wait till the flag turn green."
 
-return status
+    return status
 
 
 # Run the funciton to see how it behaves
@@ -50,7 +50,7 @@ print(find_error2)
 Description: Builds a simple greeting message.
 Return a greeting message on the given the user names.
 """
-def find_error3(name1, name2, name3);
+def find_error3(name1, name2, name3):
     
     greetings = "Hey: "+ name1 +" "+ name2 +" "+ name3
     return(greetings)
@@ -67,17 +67,17 @@ Description: Given a list in the function, add 1 to its every elenent and return
 Return: A new list made from the given list.
 """
 def find_error4():
-    givenList = [456, 45, 6, 7, 8, 765, 89 12, 43 , 1589 , 547 , 879 
+    givenList = [456, 45, 6, 7, 8, 765, 89, 12, 43 , 1589 , 547 , 879] 
     newList = []
 
-    fro i in givenList
+    for i in givenList:
         newList += [i+1]
     
     return(newList)
 
 
 # Run the funciton to see how it behaves
-print(find_error4()
+print(find_error4())
 
 
 
