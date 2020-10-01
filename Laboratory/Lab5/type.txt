@@ -26,8 +26,8 @@ def parseDoc (mostCommon, letter):
 	"""
 	letterList = []
 	for word in mostCommon:
-		if letter == word:  
-			letterList += word
+		if letter == word[0]:  
+			letterList += [word]
 	return letterList
 print(parseDoc(["hello", "apple", "dog", "habit", "health"], "h"))
 
@@ -37,11 +37,11 @@ def stringPractice (word1, word2):
 	"""
 	same = True
 	for i in range(len(word1)):
-		if word1 != word2: 
-			same == False
-			return same
+		if word1[i] != word2[i]: 
+			same = False
+	return same
 print(stringPractice('sentence', 'sequence')) 
-
+print(stringPractice('hi','hi'))
 
 def testScores (scores, target):
 	"""
@@ -49,7 +49,7 @@ def testScores (scores, target):
 	"""
 	meetsTarget = []
 	for i in range(len(scores)):
-		if scores == target:
-			meetsTarget += scores
-		return meetsTarget
+		if scores[i] >= target:
+			meetsTarget += [scores[i]]
+	return meetsTarget
 print(testScores([95, 80, 20, 55, 60, 90, 92], 50))
