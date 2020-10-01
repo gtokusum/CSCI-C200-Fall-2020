@@ -15,7 +15,7 @@ def find_error1():
             pass
         elif type(elem) == str:
             pass
-
+    return my_sum
 
 # Run the funciton to see how it behaves
 print(find_error1())
@@ -43,7 +43,7 @@ def find_error2():
 
 
 # Run the funciton to see how it behaves
-print(find_error2)
+print(find_error2())
 
 
 """
@@ -58,7 +58,7 @@ def find_error3(name1, name2, name3):
 
 
 # Run the funciton to see how it behaves
-print(find_error3())
+print(find_error3("Jupyter", "Uranus", "Pluto"))
 
 
 
@@ -92,7 +92,7 @@ def find_error5(list1, list2):
     
     my_sum  = 0
     for i in range(len(list1)):
-        my_sum += list1[i] + list2[i]
+        my_sum += int(list1[i]) + int(list2[i])
     return my_sum
 
 
