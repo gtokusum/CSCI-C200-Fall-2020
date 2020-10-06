@@ -58,5 +58,15 @@ def how_much(portfolio, metal):
 
 
 def find_num_min(xlst):
-    pass
+    minAmt = 0
+    if len(xlst) > 0:
+        for i in xlst:
+            minValue = min(xlst)
+            if i == minValue:
+                minAmt += 1
+        return (minValue, minAmt)
+    else:
+        return ()
+        
+    
 
