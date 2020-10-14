@@ -35,7 +35,7 @@ class MyTester(unittest.TestCase):
     def test_makeProbability(self):
         for i,j,k in zip(xlst, plst, elst):
             self.assertEqual(a5.makeProbability(i),j)
-            self.assertEqual(a5.entropy(a5_s.makeProbability(i)),k)
+            self.assertEqual(a5.entropy(a5.makeProbability(i)),k)
     def test_magic(self):
             x = rn.randint(1,50)
             self.assertEqual(a5.magic(x),x)
