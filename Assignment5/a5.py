@@ -69,7 +69,7 @@ def remove_allr(x,xlst):
     
     def remov(x,xlst):
         if xlst == []:
-            print(emlst)
+            return emlst
             
 
         else:
@@ -80,10 +80,9 @@ def remove_allr(x,xlst):
             else:
                 # print(emlst)
                 remov(x,xlst[1:])
-    def ans(y):
-        return y
+    
     remov(x,xlst)
-    # return emlst
+    return emlst
     
         
 
