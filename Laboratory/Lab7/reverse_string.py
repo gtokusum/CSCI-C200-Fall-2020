@@ -5,7 +5,7 @@ def reverse_str_while(s):
     pass
 
 def reverse_str_tail(s,a=''):
-    pass
+    pass 
 
 def is_palin(s):
     """

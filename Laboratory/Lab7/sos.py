@@ -26,7 +26,12 @@ def tail_sos(n, a=1):
 
 d = {}
 def memo_sos(n):
-    pass
+    if n not in d.keys():
+        if n == 1:
+            d[n] = 1
+        else:
+            d[n] = n**2 + memo_sos(n-1)
+    return d[n]
 
 if __name__ == "__main__":
     print("Sum of Squares Practice")

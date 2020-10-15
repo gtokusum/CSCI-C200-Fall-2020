@@ -21,9 +21,17 @@ def tail_factorial(n, a=1):
     else:
         return tail_factorial(n-1,a = a*n)
 
-
+d = {} # we have this outside of the function so that it exists in memory
 def memo_factorial(n):
-    pass
+    if n not in d.keys(): # checking if we have seen it before
+        # if here, we have not calculated before
+        if n == 1:
+            d[n] = 1 # we store it here(we will see why we don't return yet)
+        else:
+            d[n] = n * memo_factorial(n-1)
+            # we need to make sure we use the memo
+    
+    return d[n]
 
 
 if __name__ == "__main__":
