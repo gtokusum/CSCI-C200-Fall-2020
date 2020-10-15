@@ -13,7 +13,7 @@ def entropy(xlst):
     probs = makeProbability(xlst)
     finalProbs = 0
     for i in probs:
-        finalProbs += (i*(math.log(i)/math.log(2)))
+        finalProbs += (i*(math.log(i,2)))
     return -finalProbs
 
 def magic(x):
