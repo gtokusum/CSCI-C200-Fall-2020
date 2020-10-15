@@ -2,16 +2,27 @@
 Sum of squares is where you add the squares of all numbers from 1 to n (inclusive).
 You can also think of it as the sum of squares from n down to 1.
 The function is very similar to factorial in how it is set up.
+n = 5 = 5^2 + 4^2 + 3^2 +2^2 + 1^2
 """
 
 def while_sos(n):
-    pass
+    result = 1
+    while n > 1:
+        result += (n**2)
+        n -= 1
+    return result
 
 def sos(n):
-    pass
+    if n == 1:
+        return 1
+    else:
+        return n**2 + sos(n-1)
 
 def tail_sos(n, a=1):
-    pass
+    if n == 1:
+        return a
+    else:
+        return tail_sos(n-1, a = a + n**2)
 
 d = {}
 def memo_sos(n):
