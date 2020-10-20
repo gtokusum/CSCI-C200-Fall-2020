@@ -7,7 +7,7 @@ def o(x,xlst):
         return xlst[0] == x or o(x, xlst[1:])
     else:
         return False
-
+ 
 def ol(x,xlst):
     def oh(xlst):
         if xlst:
@@ -33,7 +33,12 @@ def F(n,m,p):
     """
     Function F in the PDF document as recursive
     """
-    pass
+    ans = 0
+    if n <= 0:
+        return ans
+    else:
+         ans = n*m - p 
+         return ans + F(n-3,m-2,p-1) 
 
 def Ft(n,m,p,v = 100):
     """
@@ -121,15 +126,33 @@ def bk(xbook):
     """
     Implement an iterative solution for problem 2 (for or while loops)
     """
-    pass
+    cval = 0
+    dval = 0
+    for i in xbook:
+        if i[0] == d:
+            dval += i[1]
+        else:
+            cval += i[1]
+    return cval == dval
 
 def bkr(xbook):
     """
     Implement a recursive solution for problem 2
     """
-    pass    
-
-
+    dval = 0
+    cval = 0
+    def calc(xbook,dval,cval):
+        while xbook != []:
+            for i in xbook:
+                if i[0] == d:
+                    dval += i[1]
+                    calc(xbook[1:],dval,cval)
+                else:
+                    cval += i[1]
+                    calc(xbook[1:],dval,cval)
+        return dval == cval
+    calc(xbook,dval,cval)
+    return dval == cval    
 
 if __name__ == "__main__":
     """
@@ -159,7 +182,13 @@ def is_isogram(xword):
 
     You are **not** allowed to use the .count() method
     """
-    pass
+    iso = False
+    word = xword
+    y = list(xword)
+    for i in range(len(y)-1):
+        if y[i] not in y[1:]:
+            iso = True
+    return iso
 
 def anagram(x,y):
     """
@@ -167,7 +196,9 @@ def anagram(x,y):
     
     Hint: One way to think of this is to compare the number of letters that each string has
     """
-    pass
+    first = sorted(x)
+    second = sorted(y)
+    return first == second
 
 
 if __name__ == "__main__":
@@ -198,7 +229,17 @@ def div_9(x):
     You are only allowed to use modulo (%) and evenly divides (//) only with the number 10. 
     i.e. 5 % 10
     """
-    pass
+    y = [int(d) for d in str(x)]
+    count = 0
+    if x == 0:
+        return True
+    else:
+        while len(y) > 1:
+            count = 0
+            for i in y:
+                count += i
+            y = [int(d) for d in str(count)]
+        return count == 9
 
     
 if __name__ == "__main__":
@@ -225,7 +266,17 @@ def cicero(epectitus):
     """
     This should print all of the roman numerals from 1-100 in the format that is shown in the assignments pdf
     """
-    pass
+    xsnum = [i for i in range(10)]
+    ydnum = [i for i in range(11)]
+    singledig = dict(zip(xsnum,xs))
+    doubledig = dict(zip(ydnum,yd))
+    num = [int(d) for d in str(epectitus)]
+    if len(num) == 1:
+        return  singledig[epectitus]
+    elif len(num) == 2:
+        return doubledig[num[0]] + singledig[num[1]]
+    else:
+        return doubledig[10] + doubledig[num[1]] + singledig[num[2]]
 
 
 if __name__ == "__main__":
@@ -257,7 +308,24 @@ def find_tuple(x):
     This function is supposed to loop through all of the possiblities so to find what the tuple is
     One way to do this is to write four nested for-loops.
     """
-    pass
+    ans = []
+    a,b,c,d = 0,0,0,0
+    while a != x[0]:
+        a += 1
+        
+    while b != x[1]:
+        b += 1
+    
+    while c != x[2]:
+        c += 1
+    
+    while d != x[3]:
+        d += 1
+    ans.append(a)
+    ans.append(b)
+    ans.append(c)
+    ans.append(d)
+    return ans
 
 
 if __name__ == "__main__":
@@ -269,7 +337,7 @@ if __name__ == "__main__":
     print("xfind:" + str(x_find))
     print("The next line is a call to find_tuple")
     print("Your xfind:" + str(find_tuple(x_find)))
-                
+    
 
 ###########################################################################
 # Problem 7
@@ -284,8 +352,17 @@ def make_pairing(xseq):
     Parameter (xseq): A DNA sequence as a string
     Returns: The complementary sequence
     """
-    pass
-
+    pair = ''
+    for i in xseq:
+        if i == A:
+            pair += T
+        elif i == C:
+            pair += G
+        elif i == T:
+            pair += A
+        else:
+            pair += C
+    return pair
 
 def findError(s1,s2):
     """
@@ -297,7 +374,19 @@ def findError(s1,s2):
     Returns: dash '-' if the pairing is correct and an '*' pointing to 
         where the violation of the pairing is
     """
-    pass
+    error = ''
+    for i in range(len(s1)):
+        if s1[i] == A and s2[i] == T:
+            error += '-'
+        elif s1[i] == T and s2[i] == A:
+            error += '-'
+        elif s1[i] == C and s2[i] == G:
+            error += '-'
+        elif s1[i] == G and s2[i] == C:
+            error += '-'
+        else:
+            error += '*'
+    return error
 
 
 
