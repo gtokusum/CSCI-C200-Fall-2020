@@ -33,50 +33,71 @@ def F(n,m,p):
     """
     Function F in the PDF document as recursive
     """
-    ans = 0
-    if n <= 0:
-        return ans
-    else:
-         ans = n*m - p 
-         return ans + F(n-3,m-2,p-1) 
+    def Fh(n,m,p):
+        if p == 0:
+            return 100 + n - m
+        else:
+            return n*m - p + Fh(n-3,m-2,p-1)
+    return Fh(n,m,p)
 
 def Ft(n,m,p,v = 100):
     """
     Function F in the PDF document **BUT** this one has to be tail recursive
     """
-    pass
+    if p == 0:
+        return 100 + n - m
+    else:
+        return Ft(n-3,m-2,p-1, v = v + n * m -p)
 
 
 def gsf_close(a,r,n):
     """
     Function F in the PDF document in closed form
     """
-    pass
+    return a*((1-r**n)/(1-r))
 
 def gsf(a,r,n):
     """
     Function F in the PDF using a for loop
     """
-    pass
+    ans = 0
+    for i in range(n):
+        ans += a* (r**i)
+    return ans        
 
 def g(a,r,n):
     """
-    The sigma function (5) in the pdf that implements recursio
+    The sigma function (5) in the pdf that implements recursion
     """
-    pass
+    k = n-1
+    def gh(a,r,n):
+        if n > 0:
+            return a*r**n + gh(a,r,n-1)
+        else:
+            return a
+    return gh(a,r,k)
+        
 
 
 def B(n):
     """
     Function B in the PDF using recursion
     """
-    pass
+    if n != 0 and n != 1:
+        return 5*n + B(n-1)
+    elif n == 1:
+        return 10
+    else:
+        return 5
 
 def Bt(n,v=0):
     """
     Function B in the PDF using tail-recursion
     """
-    pass
+    if n != 0:
+        return Bt(n-1,v = v + 5*n)
+    else:
+        return v +5
 
 
 
@@ -84,14 +105,27 @@ def x(n):
     """
     Function x in the PDF using recursion
     """
-    pass
+
+    if n != 0:
+        if n%2==0:
+            return 2*n + 1 + x(n-1)
+        else:
+            return 2*n + x(n-1)
+    else:
+        return 3
+    
 
 def xt(n,v=3):
     """
     Function x in the PDF using tail-recursion
     """
-    pass
-
+    if n != 0:
+        if n % 2 == 0:
+            return xt(n-1, v = v + 2*n + 1)
+        else:
+            return xt(n-1, v  = v + 2*n)
+    else:
+        return v
 
 
 if __name__ == "__main__":
@@ -139,20 +173,17 @@ def bkr(xbook):
     """
     Implement a recursive solution for problem 2
     """
-    dval = 0
-    cval = 0
-    def calc(xbook,dval,cval):
-        while xbook != []:
-            for i in xbook:
-                if i[0] == d:
-                    dval += i[1]
-                    calc(xbook[1:],dval,cval)
-                else:
-                    cval += i[1]
-                    calc(xbook[1:],dval,cval)
-        return dval == cval
-    calc(xbook,dval,cval)
-    return dval == cval    
+    dv = []
+    cv = []
+    for i in xbook:
+        if i[0] == d:
+            dv.append(i[1])
+            bkr(xbook[1:])
+        else:
+            cv.append(i[1])
+            bkr(xbook[1:])
+    return sum(dv) == sum(cv)
+        
 
 if __name__ == "__main__":
     """
@@ -196,8 +227,12 @@ def anagram(x,y):
     
     Hint: One way to think of this is to compare the number of letters that each string has
     """
-    first = sorted(x)
-    second = sorted(y)
+    b = list(x)
+    z = list(y)
+    b = ''.join(b)
+    z = ''.join(z)
+    first = sorted(b)
+    second = sorted(z)
     return first == second
 
 

@@ -157,4 +157,5 @@ if __name__ == "__main__":
     print("This is the code file. To see test results, please run 'test_a5.py'")
     print("Feel free to write your own tests here. The tests you write below will not be graded.")
     rec_sort([44, 65, 79, 83, 86, 89, 3, 43, 83, 91])
+    remove_allr(1,[1,1,2,1,2])
     # Add your own code below to write your own tests
