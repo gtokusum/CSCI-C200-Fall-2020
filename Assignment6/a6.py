@@ -44,11 +44,11 @@ def Ft(n,m,p,v = 100):
     """
     Function F in the PDF document **BUT** this one has to be tail recursive
     """
-    if p == 0:
-        return 100 + n - m
+    if p != 0:
+        return Ft(n-3,m-2,p-1, v =v+ n * m -p)
     else:
-        return Ft(n-3,m-2,p-1, v = v + n * m -p)
-
+        
+        return v + n - m
 
 def gsf_close(a,r,n):
     """
