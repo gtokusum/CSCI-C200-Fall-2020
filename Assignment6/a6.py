@@ -331,7 +331,7 @@ if __name__ == "__main__":
 # Problem 6
 ###########################################################################
 
-
+import time 
 import random as rn
 
 #secret number
@@ -346,16 +346,45 @@ def find_tuple(x):
     ans = []
     a,b,c,d = 0,0,0,0
     while a != x[0]:
-        a += 1
-        
+        if a < x[0] and a - x[0] < 0:
+
+            a += 100
+        elif a > x[0] and a - x[0] > 50:
+            a -= 50
+        elif a - x[0] < 50:
+            a -=1
+        else:
+            a += 1
+
     while b != x[1]:
-        b += 1
+        if b < x[1] and b - x[1] < 0:
+            b += 100
+        elif b > x[1] and b - x[1] > 50:
+            b -= 50
+        elif b - x[1] < 50:
+            b -=1
+        else:
+            b += 1
     
     while c != x[2]:
-        c += 1
+        if c < x[2] and c - x[2] < 0:
+            c += 100
+        elif c > x[2] and c - x[2] > 50:
+            c -= 50
+        elif c - x[2] < 50:
+            c -=1
+        else:
+            c += 1
     
     while d != x[3]:
-        d += 1
+        if d < x[3] and d - x[3] < 0:
+            d += 100
+        elif d > x[3] and d - x[3] > 50:
+            d -= 50
+        elif d - x[3] < 50:
+            d -=1
+        else:
+            d += 1
     ans.append(a)
     ans.append(b)
     ans.append(c)
@@ -371,8 +400,10 @@ if __name__ == "__main__":
     print("\n" * 3 + "~"*20 + "Problem 6" + "~"*20 + "\n")
     print("xfind:" + str(x_find))
     print("The next line is a call to find_tuple")
+    start = time.time()
     print("Your xfind:" + str(find_tuple(x_find)))
-    
+    end = time.time()
+    print("Calculation time (s):",end-start)
 
 ###########################################################################
 # Problem 7
