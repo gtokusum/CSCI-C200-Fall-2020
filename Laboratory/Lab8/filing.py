@@ -51,7 +51,12 @@ def writeEx1():
 
     This function will be a "workspace" for us to practice reading files
     """
-    pass
+    
+    stuff = ['a', 'b', 'c', 'd', 'e', 'f']
+    fileToWrite = open('Laboratory/Lab8/wrong.txt','w')
+    for s in stuff:
+        fileToWrite.write(s + '\n')
+    fileToWrite.close()
 
 
 def writeEx2():
