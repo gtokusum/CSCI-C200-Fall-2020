@@ -4,10 +4,10 @@ def stringFormatDocumentation():
     This function does not return anything, it is more of a place to combine 
     code and comment out the function call in `__main__`
     """
-    string1 = "" # TODO: Complete this string to use format
-    string2 = "" # TODO: Complete this string to use format
-    string4 = "" # TODO: Complete this string to use format
-    string5 = "" # TODO: Complete this string to use format
+    string1 = "{} - {}" # TODO: Complete this string to use format
+    string2 = "{:>10}" # TODO: Complete this string to use format
+    string4 = "Does {} == {} ? -> {}" # TODO: Complete this string to use format
+    string5 = "{:~^10}" # TODO: Complete this string to use format
 
     strings = [string1, string2, string4, string5]
 

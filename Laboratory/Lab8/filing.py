@@ -65,7 +65,11 @@ def writeEx2():
 
     This function will be a "workspace" for us to practice reading files
     """
-    pass
+    file2Write = open('Laboratory/Lab8/wrong.txt', 'a')
+    for s in range(4):
+        file2Write.write('more\n')
+    file2Write.close()
+    
 
 
 
@@ -78,7 +82,28 @@ def StripLab(filePath, newFile):
     
     Return number of lines with count. 
     '''
-    pass
+    count = 0
+    theFile = open(filePath, 'r') # read file
+    originalContent = theFile.read() # hypothetically use readlines
+    theFile.close()
+
+    #split lines
+    splitted = originalContent.split("\n")
+    goodLines = [] # hold our 'good' lines
+    #coutn lines and save lines
+    for line in splitted:
+        if 'Laboratory' in line.strip():#membership: checking -> if x is in y
+            count += 1 
+        else:
+            goodLines.append(line.strip())
+
+    #write lines
+    toWrite = open(newFile, 'w')
+    for line in goodLines:
+        toWrite.write(line)
+        toWrite.write('\n') # could have put this in the line above (+ '\n')
+    toWrite.close()
+    return count
 
 
 
