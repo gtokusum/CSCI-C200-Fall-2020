@@ -7,14 +7,20 @@ def d(n):
     """
     Recursive
     """
-    pass
+    if n == 0:
+        return 1
+    else:
+        return 3* d(n-1) + 1
 
 #recursive
 def cr(n,m):
     """
     Must be recursive
     """
-    pass
+    if m == 0 or n == m:
+        return 1
+    else:
+        return cr(n-1,m) + cr(n-1,m-1)
 
 #recursive
 def B(n):
@@ -22,7 +28,11 @@ def B(n):
     Must be recursive
     """
     pass
-
+    # if n == 0:
+    #     return 1
+    # else:
+    #     b = [i for i in range(n)]
+    #     return (-1/(1+n)) * sum([i for i in cr(n,(i for i in b))])
 if __name__ == "__main__":
     """
     The code in "__main__" is not being graded, but a tool for you to test 
@@ -62,12 +72,14 @@ def get_data(path,name):
 
 #population model
 def pop(year):
-    pass
+    return 1436.53*(1.01395**year)
 
 #average relative error function
 def error(theData):
-    pass
-
+    x = [i[1] for i in theData]
+    s = [i - 1900 for i in x]
+    y = [np.absolute(pop(i)) for i in s]
+    return 100/12 * sum(y)
 
 if __name__ == "__main__":
     """
@@ -76,7 +88,7 @@ if __name__ == "__main__":
     """
     print("~" * 30 + "Problem 2" + "~" * 30)
     data = get_data("Assignment7", "pop.txt")
-    #uncomment this to generate graph
+    # uncomment this to generate graph
     # total_error = round(error(data),4)
 
     # t = np.arange(0.0, 120.0)
@@ -90,6 +102,7 @@ if __name__ == "__main__":
     # title = "Population Growth. Total ave error = %{0}".format(total_error))
     # ax.grid()
     # plt.show()
+    
 
 ###############
 # PROBLEM THREE
@@ -144,7 +157,11 @@ if __name__ == "__main__":
 ###############
 
 def palindrome(word):
-    pass
+    a = list(word)
+    b = ''.join(a)
+    x = list(word[::-1])
+    y = ''.join(x)
+    return str(y) == str(b)
 
 
 if __name__ == "__main__":
@@ -163,7 +180,17 @@ if __name__ == "__main__":
 ###############
 
 def div_11(n):
-    pass
+    x = [int(i) for i in str(n)]
+    count = 0
+    ans = 0
+    for i in x:
+        if count % 2 == 0:
+            ans += i
+            count += 1
+        else:
+            ans -= i
+            count += 1
+    return ans == 11 or ans == -11 or ans == 0
 
 
 
@@ -187,7 +214,7 @@ if __name__ == "__main__":
 #you must code your own sort (I'd use quicksort)
 #if you decide to use sorting
 def nn(x,y,z):
-    pass
+    
 
 if __name__ == "__main__":
     """
