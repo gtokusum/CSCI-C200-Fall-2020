@@ -27,12 +27,12 @@ def B(n):
     """
     Must be recursive
     """
-    pass
-    # if n == 0:
-    #     return 1
-    # else:
-    #     b = [i for i in range(n)]
-    #     return (-1/(1+n)) * sum([i for i in cr(n,(i for i in b))])
+    if n == 0:
+        return 1
+    else:
+        return (-1/(n+1)) * sum([cr(n+1,i)*B(i) for i in range(n)])
+    
+
 if __name__ == "__main__":
     """
     The code in "__main__" is not being graded, but a tool for you to test 
@@ -113,7 +113,10 @@ def a(n):
     """
     Function must be recursive
     """
-    pass
+    if n == 0:
+        return 1
+    else:
+        return n*((-1)**n) +a(n-1)
 
 #bottom-up memoization
 #use this dictionary below
@@ -122,7 +125,14 @@ def am(n):
     """
     Should not be recursive
     """
-    pass
+    for i in range(1,n+1):
+        if i not in d1.keys() :
+            d1[i] = d1[i-1] + (i*((-1)**i))
+#             print(d1)
+        else:
+            pass
+    return d1[n]
+
 
 
 
@@ -131,15 +141,23 @@ def h():
     """
     Must be written as a generator
     """
-    pass
+    x,y = 1,1
+    while True:
+        yield x
+        x = x + (y)*(-1)**y
+        y = y + 1
 
 #function ag uses the generator h()
 def ag(n):
     """
     Function must utilize the generator
     """
-    pass
-
+    z = a(n)
+    for i in h():
+        if i == z:
+            return i
+        else:
+            yield i 
 
 
 if __name__ == "__main__":
@@ -150,6 +168,7 @@ if __name__ == "__main__":
     print("~" * 30 + "Problem 3" + "~" * 30)
     for i in range(0,6):
         print("a({0}) = {1},{2},{3}".format(i,a(i),am(i),ag(i)))
+    
 
 
 ###############
@@ -214,8 +233,41 @@ if __name__ == "__main__":
 #you must code your own sort (I'd use quicksort)
 #if you decide to use sorting
 def nn(x,y,z):
-    
-
+    def qs(n):
+        if len(n) <= 1:
+            return n
+        else:
+            left,right = [],[]
+            pivot = n[0]
+            for i in n[1:]:
+                if i <= pivot:
+                    left.append(i)
+                else:
+                    right.append(i)
+        return qs(left) + [pivot] + qs(right)
+    ans = [i for i in qs(x) if i == y]
+    more = [i for i in qs(x) if i > y]
+    less = [i for i in qs(x) if i < y]
+    def repeat(ans,less,more,y,z):
+        while len(ans) < z:
+            if len(less) == 0 or len(more)==0:
+                return ans
+            elif np.absolute(less[-1]-y) < np.absolute(more[0]-y):
+                ans.append(less[-1])
+                repeat(ans,less[:-1],more,y,z)
+            elif np.absolute(less[-1]-y) < np.absolute(more[0]-y):
+                ans.append(more[0])
+                repeat(ans,less,more[1:],y,z)
+            else:
+                ans.append(more[0])
+                ans.append(less[-1])
+                repeat(ans,less[:-1],more[1:],y,z)
+        return ans
+    if len(ans) < z:
+        repeat(ans,less,more,y,z)
+    else:
+        pass
+    return ans
 if __name__ == "__main__":
     """
     The code in "__main__" is not being graded, but a tool for you to test 
