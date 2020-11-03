@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def cost(x):
-    pass
+    return 2000+500*x
 
 def revenue(x):
-    pass
+    return 2000*x - 10*x**2
 
 def profit(x):
-    pass
+    return revenue(x) - cost(x)
 
 """ 
 Do Not Change `fp` or `newton` 
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ax.set(xlabel ="Widgets Sold", ylabel="Profit ($)",
         title = "Maximal Profit = ${0}".format(profit(75)))
     ax.grid()
-    plt.show()
+    # plt.show()
 
 
 
@@ -58,11 +58,22 @@ if __name__ == "__main__":
 ex_f = lambda x: x**6 - x - 1
 
 def sign(x):
-    pass
+    if x <= 0:
+       return -1
+    else:
+        return 1
 
 
 def bisect(f,a,b,tau):
-    pass
+    c = (a+b)/2
+    fb = f(b)
+    fc = f(c)
+    if b-c <= tau:
+        return c
+    if sign(fb)*sign(fc) <= 0:
+        return bisect(f,c,b,tau)
+    else:
+        return bisect(f,a,c,tau)
 
 if __name__ == "__main__":
     """
@@ -175,7 +186,13 @@ if __name__ == "__main__" and installed:
 ex_f = lambda x: x**6 - x - 1
 
 def secant(f,x0,x1,tau):
-    pass
+    fx = f(x1)
+    if abs(fx) > tau:
+        x2 = x1 - f(x1) * ((x1-x0)/(f(x1)-f(x0)))
+        secant(f,x1,x2,tau)
+    else:
+        return (f(x1))
+
 
 if __name__ == "__main__":
     """
@@ -184,7 +201,8 @@ if __name__ == "__main__":
     """
     print("~" * 30 + "Problem 4" + "~" * 30)
     x = secant(ex_f,2.0,1.0,.0001)
-    print(x,ex_f(x))
+    # print(x,ex_f(x))
+    print(x)
     
 
 ############################################################
@@ -196,10 +214,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def even(x):
-    pass
+    if x % 2 == 0:
+        return 1
+    else:
+        return -1
 
 def simpson(fn,a,b,n):
-    pass
+    dx = (b-a)/n
+    gx = (b-a)/(3*n)
+    if even(n) == 1:
+        x = [i for i in np.arange(a,b+dx,dx)]
+        y = [4*fn(x[i]) for i in range(len(x)) if x[i] != x[0] and x[i] != x[-1] and i % 2 != 0]
+        z = [2*fn(x[i]) for i in range(len(x)) if x[i] != x[0] and x[i] != x[-1] and i % 2 == 0]
+        return gx* (sum(z) + sum(y) + fn(a) + fn(b))
+    else:
+        return 'n is not even'
+
 
 
 if __name__ == "__main__":
@@ -229,7 +259,7 @@ if __name__ == "__main__":
     ax.set(xlabel ="x", ylabel=r"$f(x)=3x^2 + 1$",
         title = r"Area under the curve $\int_0^6\,f(x)$")
 
-    plt.show()
+    # plt.show()
 
 
 ############################################################
@@ -238,22 +268,37 @@ if __name__ == "__main__":
 
 #recursive
 def V(n,m):
-    pass
+    if m == 0:
+        return 4
+    else:
+        return 2*n - V(n-1,m-1)
 
 #update dictionary e inside Vm
 #memoization
 e = {}
 
 def Vm(n,m):
-    pass
-
-
+    if (n,m) not in e.keys():
+        if m == 0:
+            e[(n,m)] = 4
+        else:
+            e[(n,m)] = 2*n - Vm(n-1,m-1)
+    return e[(n,m)]
 #generator
 def h(n,m):
-    pass
+    while True:
+        if m == 0:
+            yield 4
+        else:
+            yield 2*n - h(n-1,m-1)
 
 def Vg(n,m):
-    pass
+    z = V(n,m)
+    for i in h(n,m):
+        if i == z:
+            return i 
+        else:
+            yield i
       
 
 
