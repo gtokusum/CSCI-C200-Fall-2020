@@ -119,6 +119,7 @@ WHITE = (255,255,255)
 BLUE =  (0,0,255)
 RED =   (255,0,0)
 YELLOW = (255,255,0)
+DGREEN = (0,100,0)
 
 class Rectangle:
 
@@ -131,8 +132,18 @@ class Rectangle:
     
     def my_move(self,xoffset,yoffset):
         self.loc = [self.loc[0]+xoffset,self.loc[1]+yoffset] + self.loc[2:]
-  
-
+    
+    def changeColor(self):
+        if self.loc[0] >= 280:
+            self.color = pygame.Color(DGREEN)
+        if self.loc[0] <= 10:
+            self.color = pygame.Color(RED)
+        if self.loc[1]  <= 10:
+            self.color = pygame.Color(YELLOW)
+        if self.loc[1] >= 280:
+            self.color = pygame.Color(BLUE)
+        else:
+            pass
 def problem3():
     size = [300, 300]
     screen = pygame.display.set_mode(size)
@@ -167,7 +178,7 @@ def problem3():
             if r.loc[1] < 10:
                 yd = rn.randint(1,3)
             r.my_move(xd,yd)
-
+            r.changeColor()
             pygame.display.flip()
 
 
@@ -177,7 +188,7 @@ if __name__ == "__main__" and installed:
     your code outside of the `test_a8.py`. Feel free to add print statements. 
     """
     print("~" * 30 + "Problem 3" + "~" * 30)
-    problem3()
+    # problem3()
 
 
 ############################################################
@@ -286,19 +297,27 @@ def Vm(n,m):
     return e[(n,m)]
 #generator
 def h(n,m):
+    x = 4
     while True:
-        if m == 0:
-            yield 4
-        else:
-            yield 2*n - h(n-1,m-1)
+        yield 2*n - x
+        x = 2*n -x
+        m -= 1
+        n -= 1
+
+
+
+        
+
 
 def Vg(n,m):
-    z = V(n,m)
-    for i in h(n,m):
-        if i == z:
-            return i 
-        else:
-            yield i
+    s = h(n,m)
+    if m == 0:
+        return 4
+    else:
+        while m > 0:
+            next(s)
+            m -=1
+        return next(s)
       
 
 
