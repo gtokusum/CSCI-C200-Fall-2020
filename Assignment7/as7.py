@@ -152,12 +152,11 @@ def ag(n):
     """
     Function must utilize the generator
     """
-    z = a(n)
-    for i in h():
-        if i == z:
-            return i
-        else:
-            yield i 
+    s = h()
+    while n >0:
+        next(s)
+        n -= 1
+    return next(s)
 
 
 if __name__ == "__main__":

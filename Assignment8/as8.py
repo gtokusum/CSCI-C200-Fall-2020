@@ -297,12 +297,12 @@ def Vm(n,m):
     return e[(n,m)]
 #generator
 def h(n,m):
-    x = 4
+    x = 2*n
     while True:
-        yield 2*n - x
-        x = 2*n -x
-        m -= 1
+        yield x
         n -= 1
+        m -= 1
+        x = x - 2*n 
 
 
 
