@@ -1,0 +1,138 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+testing Item
+testing showInfo()
+
+        Expected Output
+Item name: Bananas
+ItemAmount: 0.5
+Item name: Soup
+ItemAmount: 1.0
+Item name: Onion
+ItemAmount: 1.75
+Item name: Coke
+ItemAmount: 1.75
+Item name: Doritos
+ItemAmount: 3.5
+Item name: MountainDew
+ItemAmount: 2.0
+Item name: Chocolate
+ItemAmount: 12.99
+
+        Your output
+Item name: Bananas
+ItemAmount: 0.5
+Item name: Soup
+ItemAmount: 1.0
+Item name: Onion
+ItemAmount: 1.75
+Item name: Coke
+ItemAmount: 1.75
+Item name: Doritos
+ItemAmount: 3.5
+Item name: MountainDew
+ItemAmount: 2.0
+Item name: Chocolate
+ItemAmount: 12.99
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Testing Person
+Testing increaseBudget()
+
+Expected Output
+1000000000013897
+50264
+26838
+15647
+
+Your output
+1000000000013897
+50264
+26838
+15647
+
+Testing donateEverythingAndBeHomeless
+
+        Expected output
+0
+0
+0
+0
+
+        Your output
+0
+0
+0
+0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Testing Reciept class
+Testing addItem
+
+        Expected Output
+Item name: Bananas
+ItemAmount: 0.5
+Item name: Soup
+ItemAmount: 1.0
+Item name: Onion
+ItemAmount: 1.75
+Item name: Coke
+ItemAmount: 1.75
+
+        Your output
+Item name: Bananas
+ItemAmount: 0.5
+Item name: Soup
+ItemAmount: 1.0
+Item name: Onion
+ItemAmount: 1.75
+Item name: Coke
+ItemAmount: 1.75
+
+Testing purchase
+
+        Expected output
+3.0
+10.0
+1.75
+21.0
+
+        Your output
+3.0
+10.0
+1.75
+21.0
+
+testing __str__
+        Expected Output
+                Receipt
+ 12090... Larry
+Bananas...0.5
+3.0
+                Receipt
+ 95618... Nick
+Soup...1.0
+10.0
+                Receipt
+ 58385... Brady
+Onion...1.75
+1.75
+                Receipt
+ 58839... Joe Mama
+Coke...1.75
+21.0
+
+        Your output
+                Receipt
+ 12090... Larry
+Bananas...0.5
+3.0
+                Receipt
+ 95618... Nick
+Soup...1.0
+10.0
+                Receipt
+ 58385... Brady
+Onion...1.75
+1.75
+                Receipt
+ 58839... Joe Mama
+Coke...1.75
+21.0
