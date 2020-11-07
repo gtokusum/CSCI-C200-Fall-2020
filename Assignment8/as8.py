@@ -297,26 +297,27 @@ def Vm(n,m):
     return e[(n,m)]
 #generator
 def h(n,m):
-    if m == 0:
-        yield 4
-    else:
-        while True:
-            yield 2*n 
-            n -= 1
+    y = 2*n 
+    x = 4
+    
+    while True:
+
+        yield y
+        n -= 1
+        m -= 1
+        y = y - 2*n 
             
-
-
-        
 
 
 def Vg(n,m):
     s = h(n,m)
+    z = m
     if m == 0:
         return 4
     else:
-        while m > 0:
+        while z > 1:
             next(s)
-            m -=1
+            z -= 1
         return next(s)
       
 
