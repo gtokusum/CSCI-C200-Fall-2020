@@ -27,7 +27,20 @@ def step(x,y,i):
     direction = rn.randint(1,4) # keep this line
     # TODO: implement this function solution
     ########################################
-    pass
+    z = direction
+    if z == 1:
+        x[i] = x[i-1] + 1
+        y[i] = y[i-1]
+    elif z == 2:
+        x[i] = x[i-1] -1
+        y[i] = y[i-1]
+    elif z == 3:
+        x[i] = x[i-1]
+        y[i] = y[i-1] + 1
+    else:
+        x[i] = x[i-1]
+        y[i] = y[i-1] -1
+    return x,y
 
 def graphit(x,y,n):
     """
@@ -62,7 +75,7 @@ if __name__ == "__main__":
     for i in range(1,n):
         step(xArray,yArray,i)
 
-    graphit(xArray, yArray, n)
+    # graphit(xArray, yArray, n)
 
 
 ###########################
@@ -70,7 +83,7 @@ if __name__ == "__main__":
 ###########################
 
 import random as rn
-
+import math
 
 #Assume this is in 2D dimension
 def distance(p1,p2):
@@ -80,7 +93,7 @@ def distance(p1,p2):
 
     The points are given as a tuple with 2 values
     """
-    pass
+    return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
 
 
 
@@ -90,8 +103,18 @@ def brute(xlst):
     Given a list of points, where each points is represented 
     by a tuple of 2 values. 
     """
-    pass
- 
+    dist = distance(xlst[0],xlst[1])
+    p1 = xlst[0]
+    p2 = xlst[1]
+    for i in xlst:
+        for j in xlst:
+            if distance(i,j)<dist and i != j:
+                dist = distance(i,j)
+                p1 = i
+                p2 = j
+            else:
+                pass
+    return p1,p2,dist
 if __name__ == "__main__":
     """
     The code in "__main__" is not being graded, but a tool for you to test 
@@ -126,7 +149,7 @@ def productivity(N,T = 40):
 
     Function described in the paper provided
     """
-    pass
+    return N*T*(0.55-0.00005*N*(N-1))
 
 """ 
 Do Not Change fp or newton
@@ -173,7 +196,7 @@ if __name__ == "__main__":
     ax.set(xlabel ="Number of people", ylabel="person x hrs", title = "Maximal Productivity P({0}) ~ {1}".format(x,y))
 
     ax.grid()
-    plt.show()
+    # plt.show()
 
     print("Please complete answering the questions described in the other PDF")
 
@@ -199,7 +222,7 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
+        return self.tuple_value[0]* other.tuple_value[0] + self.tuple_value[1] * other.tuple_value[1]
 
     def __add__(self, other):
         """
@@ -207,7 +230,7 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
+        return Vector2D(self.tuple_value[0] + other.tuple_value[0], self.tuple_value[1] + other.tuple_value[1])
 
     def __sub__(self, other):
         """
@@ -215,7 +238,7 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
+        return Vector2D(self.tuple_value[0] - other.tuple_value[0], self.tuple_value[1] - other.tuple_value[1])
 
     def __abs__(self):
         """
@@ -223,7 +246,7 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
+        return (self.tuple_value[0]**2 + self.tuple_value[1]**2)**(0.5)
 
     def scalar_mul(self, x):
         """
@@ -231,15 +254,16 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
-
+        self.tuple_value = (self.tuple_value[0]*x, self.tuple_value[1]*x)
+        return self.tuple_value
     def __neg__(self):
         """
         TODO:
 
         Implement function described in the homework PDF
         """
-        pass
+        self.tuple_value = (-self.tuple_value[0],-self.tuple_value[1])
+        return self.tuple_value
 
     def __eq__(self, other):
         """
@@ -247,7 +271,8 @@ class Vector2D:
 
         Implement function described in the homework PDF
         """
-        pass
+
+        return self.tuple_value == other
 
 
     def __str__(self):
@@ -306,7 +331,8 @@ class MyComplexNumber:
         """
         TODO:
         """
-        pass
+        return MyComplexNumber(self.rpart+ ix.rpart,self.ipart+ix.ipart)
+        
     
     #extends the '+' operator to add two complex numbers
     #what's the different between __add__(self,ix) and add(self,ix)? 
@@ -314,7 +340,7 @@ class MyComplexNumber:
         """
         TODO:
         """
-        pass
+        return MyComplexNumber(self.rpart+ix.rpart,self.ipart+ix.ipart)
         
      #extends the '-' operator to subtract two complex numbers
     # parameters: MyComplexNumber self, MyComplexNumber ix to subtract 
@@ -324,8 +350,7 @@ class MyComplexNumber:
         """
         TODO:
         """
-        pass
-
+        return MyComplexNumber(self.rpart-ix.rpart,self.ipart-ix.rpart)
     # extends the '/' operator to divide two complex numbers
     # parameters: MyComplexNumber self, MyComplexNumber ix to divide 
     #       into the MyComplexNumber self
@@ -334,13 +359,16 @@ class MyComplexNumber:
         """
         TODO:
         """
-        pass
+        s = other.rpart**2 + other.ipart**2
+        e = ((self.rpart*other.ipart) + (self.ipart*other.rpart))/(other.rpart**2 + other.ipart**2)
+        f = ((self.ipart*other.rpart) - (self.rpart*other.ipart))/(other.rpart**2 + other.ipart**2)
+        return MyComplexNumber((self.rpart*other.rpart+self.ipart*other.ipart)/s,(self.ipart*other.rpart-self.rpart*other.ipart)/s)
 
     def __mul__(self,other):
         """
         TODO:
         """
-        pass
+        return MyComplexNumber(self.rpart*other.rpart-self.ipart*other.ipart,self.ipart*other.rpart+self.rpart*other.ipart)
 
     #calculates the modulus of the self MyComplexNumber
     #parameters: MyComplexNumber self
@@ -349,7 +377,7 @@ class MyComplexNumber:
         """
         TODO:
         """
-        pass
+        return (self.rpart**2 + self.ipart**2)**(0.5)
 
     #converts the self MyComplexNumber to polar representation
     #parameters: MyComplexNumber self
@@ -358,7 +386,9 @@ class MyComplexNumber:
         """
         TODO: 
         """
-        pass
+        rho = (self.rpart**2 + self.ipart**2)**(0.5)
+        theta = math.atan(self.ipart/self.rpart) * (180/math.pi)
+        return (rho,theta)
 
 if __name__ == "__main__":
     """
@@ -396,3 +426,5 @@ if __name__ == "__main__":
     print()
     print("Polar: ", x12.polar())
 
+    print((x1 + x2).get_real())
+    i = (x1 + x2).get_imag()
