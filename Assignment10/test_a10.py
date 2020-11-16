@@ -1,4 +1,4 @@
-import as10_solutions as as10
+import as10 as as10
 import unittest
 
 print("__________________")
