@@ -5,37 +5,64 @@
 class Binary:
 
     def __init__(self, value = 0):
-        pass
-        
+        y = 0 
+        p = 0
+        n = value
+        while n != 0:
+            y = (n%2) * (10**p) + y
+            p += 1
+            n = n//2
+        if value < 0:
+            self.val = -y
+        else:
+            self.val = y
+        # self.val = value
     def __str__(self):
-        pass
-
+        if self.val >= 0:
+            return 'b'+str(self.val)
+        else:
+            return '-b'+str(self.val[1:])
     def b_to_d(self):
-        pass
+        x = 0
+        b = list(str(self.val))
+        binary = b[::-1]
+        power = 0
+        for i in binary:
+            if i == '1':
+                x += 2**power
+            power += 1
+        return x
 
     def d_to_b(self,v):
         """
         HINT: Does not modify any instance variables
         """
-        pass
+        y = 0 
+        p = 0
+        n = v
+        while v != 0:
+            y = (n%2) * (10**p) + y
+            p += 1
+            n = n//2
+        return y
 
     def __add__(self, other):
-        pass
+        return Binary(self.b_to_d() + other.b_to_d())
 
     def __sub__(self,other):
-        pass
+        return Binary(self.b_to_d() - other.b_to_d())
 
     def __mul__(self,other):
-        pass
+        return Binary(self.b_to_d() * other.b_to_d())
 
     def __neg__(self):
+        # return Binary(-1*self.b_to_d())
         pass
-
     def __abs__(self):
         pass
 
     def __len__(self):
-        pass
+        return len(str(self.val))
 
     def __and__(self,other):
         pass
@@ -58,11 +85,11 @@ if __name__ == "__main__":
     u = x & y
     print("Binary Printed:", x,y,u)
     print("b_to_d():",z,z.b_to_d())
-    -z # HINT: Calling __neg__ function
-    print("b_to_d() after using __neg__:",z,z.b_to_d())
-    w = y - x
-    print("Binary printed:", w)
-    print("Length of w:", len(w))
+    # -z # HINT: Calling __neg__ function
+    # print("b_to_d() after using __neg__:",z,z.b_to_d())
+    # w = y - x
+    # print("Binary printed:", w)
+    # print("Length of w:", len(w))
     v = x - y
     print("Binary printed:", v)
     t = v * Binary(2)
@@ -93,7 +120,13 @@ from math import radians, sin, cos, sqrt, asin
 #RETURN distance in miles
 def hd(loc1,loc2):
     r = 3961
-    pass
+    loc1 = (radians(loc1[0]),radians(loc1[1]))
+    loc2 = (radians(loc2[0]),radians(loc2[1]))
+    latd = (loc2[0] - loc1[0])/2
+    lond = (loc2[1] - loc1[1])/2
+    dnot = (sin(latd))**2 + cos(loc1[0])*cos(loc2[0])*sin(lond)**2
+    d = 2 * r * asin(sqrt(dnot))
+    return d
 
 def dd(loc1,loc2):
     """
@@ -199,12 +232,20 @@ import matplotlib.pyplot as plt
 xlst, ylst = [],[]
 
 def f(n):
-    pass
+    if n % 2 == 0:
+        return n/2
+    else:
+        return n*3 + 1
+    
 
 def g(n,i):
     xlst.append(i)
     ylst.append(n)
-    pass
+    print(str(n)+' ',end='')
+    if n == 1:
+        return 1
+    else:
+        return g(f(n),i+1)
 
 if __name__ == "__main__":
     """
