@@ -7,7 +7,7 @@ class Binary:
     def __init__(self, value = 0):
         y = 0 
         p = 0
-        n = value
+        n = abs(int(value))
         while n != 0:
             y = (n%2) * (10**p) + y
             p += 1
@@ -16,22 +16,22 @@ class Binary:
             self.val = -y
         else:
             self.val = y
-        # self.val = value
+
     def __str__(self):
-        if self.val >= 0:
-            return 'b'+str(self.val)
-        else:
-            return '-b'+str(self.val[1:])
+        return 'b'+str(self.val)
     def b_to_d(self):
         x = 0
-        b = list(str(self.val))
+        b = list(str(abs(self.val)))
         binary = b[::-1]
         power = 0
         for i in binary:
             if i == '1':
                 x += 2**power
             power += 1
-        return x
+        if self.val < 0:
+            return -1*x
+        else:
+            return x
 
     def d_to_b(self,v):
         """
@@ -39,12 +39,15 @@ class Binary:
         """
         y = 0 
         p = 0
-        n = v
-        while v != 0:
+        n = abs(int(v))
+        while n != 0:
             y = (n%2) * (10**p) + y
             p += 1
             n = n//2
-        return y
+        if v < 0:
+            return -y
+        else:
+            return y
 
     def __add__(self, other):
         return Binary(self.b_to_d() + other.b_to_d())
@@ -56,16 +59,43 @@ class Binary:
         return Binary(self.b_to_d() * other.b_to_d())
 
     def __neg__(self):
-        # return Binary(-1*self.b_to_d())
-        pass
+        return Binary(-1*self.val)
     def __abs__(self):
-        pass
+        return Binary(abs(self.val))
 
     def __len__(self):
-        return len(str(self.val))
+        if self.val < 0:
+            x = str(self.val)
+            return len(x[1:])
+        else:
+            return len(str(self.val))
 
     def __and__(self,other):
-        pass
+        x = str(self.val)[::-1]
+        y = str(other.val)[::-1]
+        z = ''
+        while len(x) != len(y):
+            if len(x) > len(y):
+                y += '0'
+            else:
+                x += '0'
+        x = x[::-1]
+        y = y[::-1]
+        for i in range(len(x)):
+            if x[i] == '1' and y[i] == '1':
+                z += '1'
+            else:
+                z += '0'
+        z = int(z)
+        g = 0
+        b = list(str(z))
+        binary = b[::-1]
+        power = 0
+        for i in binary:
+            if i == '1':
+                z += 2**power
+            power += 1
+        return Binary(z)
     
     #free :)
     def __eq__(self, other):
@@ -85,11 +115,11 @@ if __name__ == "__main__":
     u = x & y
     print("Binary Printed:", x,y,u)
     print("b_to_d():",z,z.b_to_d())
-    # -z # HINT: Calling __neg__ function
-    # print("b_to_d() after using __neg__:",z,z.b_to_d())
-    # w = y - x
-    # print("Binary printed:", w)
-    # print("Length of w:", len(w))
+    -z # HINT: Calling __neg__ function
+    print("b_to_d() after using __neg__:",z,z.b_to_d())
+    w = y - x
+    print("Binary printed:", w)
+    print("Length of w:", len(w))
     v = x - y
     print("Binary printed:", v)
     t = v * Binary(2)
@@ -182,20 +212,54 @@ plt.gca().set_prop_cycle('color', ['red', 'green', 'blue', 'black'])
 class MyLine:
 
     def __init__(self, *args, **kwargs):
-        pass
+        if '2pts' in kwargs.values():
+            x = args[0]
+            y = args[1]
+            m = (x[1]-y[1])/(x[0]-y[0])
+            self.slope = m
+            line = lambda x:m*x
+            g = 1
+            pointInt = 0
+            while g != 0:
+                g = m*pointInt
+                pointInt += 1
+            self.intercept = pointInt
+            
+            
+        elif 'point-slope' in kwargs.values():
+            p = args[0]
+            m = args[1]
+            self.slope = m
+            self.intercept = p[0]
+            
+            
+        elif 'lambda' in kwargs.values():
+            z = args[0]
+            y = lambda x:eval(args[0])
+            self.intercept = y(0)
+            self.slope = 
+            
+            
+        else:
+            pass
+        
+        self.line = lambda x:eval(str(self.get_line()[3:]))
 
     def draw(self):
         abscissa = np.arange(20)
         plt.plot(abscissa,self.line(abscissa))
  
     def get_line(self):
-        return "y = {0:.2f}x + {1:.2f}".format(self.slope, self.intercept)
+        return "y = {0:.2f}*x + {1:.2f}".format(self.slope, self.intercept)
 
     def __str__(self):
         return self.get_line()
 
     def __mul__(self,other):
-        pass
+        if self.slope == other.slope:
+            return ()
+        else:
+            return ((other.intercept - self.intercept)/(self.slope - other.slope),(other.slope-self.slope)/(self.slope-other.slope))
 
 if __name__ == "__main__":
     """
@@ -281,10 +345,13 @@ def get_data(path, name):
 
     Returns: A list of lists, where each inner list is a pair of floats
     """
-    pass
+    x = open('Assignment10/stockdata.txt','r')
+    contents = x.readlines
+    x.close()
+    return contents
 
 def mean(lst):
-    pass
+    return sum(lst)/len(lst)
 
 def sd(xlst):
     pass
