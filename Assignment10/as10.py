@@ -218,26 +218,28 @@ class MyLine:
             m = (x[1]-y[1])/(x[0]-y[0])
             self.slope = m
             line = lambda x:m*x
-            g = 1
-            pointInt = 0
-            while g != 0:
-                g = m*pointInt
-                pointInt += 1
-            self.intercept = pointInt
+            self.intercept = x[1] - x[0]*m
+            line = lambda x: x*m + self.intercept
+
             
             
         elif 'point-slope' in kwargs.values():
             p = args[0]
             m = args[1]
             self.slope = m
-            self.intercept = p[0]
+            self.intercept = m*(-p[0]) - p[1]
+            line = lambda  x: m*(x-p[0]) - p[1]
+
             
             
         elif 'lambda' in kwargs.values():
             z = args[0]
             y = lambda x:eval(args[0])
             self.intercept = y(0)
-            self.slope = 
+            p1 = (0,y(0))
+            p2 = (1,y(1))
+            self.slope = (p2[1]-p1[1])/(p2[0]-p1[0]) 
+            line  = y
             
             
         else:
@@ -259,7 +261,10 @@ class MyLine:
         if self.slope == other.slope:
             return ()
         else:
-            return ((other.intercept - self.intercept)/(self.slope - other.slope),(other.slope-self.slope)/(self.slope-other.slope))
+            x = -(other.intercept - self.intercept)/(other.slope - self.slope)
+            # x = (self.intercept - other.intercept)/(self.slope - other.slope) 
+            y = self.slope * x + self.intercept
+            return (x,y)
 
 if __name__ == "__main__":
     """
@@ -271,21 +276,21 @@ if __name__ == "__main__":
     print("Problem 3")
     print("~"*30)
     x1 = MyLine((0,0), (5,5),options = "2pts")
-    x1.draw()
+    # x1.draw()
     x2 = MyLine((5,0),-1/4, options = "point-slope")
-    x2.draw()
+    # x2.draw()
     x3 = MyLine("(-4/5)*x + 5", options = "lambda")
-    x3.draw()
+    # x3.draw()
     x4 = MyLine("x + 2", options = "lambda")
-    x4.draw()
+    # x4.draw()
 
     print("The intersection of {0} and {1} is {2}".format(x1,x2,x1*x2))
     print("The intersection of {0} and {1} is {2}".format(x1,x3,x1*x3))
     print("The intersection of {0} and {1} is {2}".format(x1,x4,x1*x4))
 
 
-    plt.legend([x1.get_line(), x2.get_line(), x3.get_line(),x4.get_line()], loc='upper left')
-    plt.show()
+    # plt.legend([x1.get_line(), x2.get_line(), x3.get_line(),x4.get_line()], loc='upper left')
+    # plt.show()
 
 ########################
 #Problem Four
@@ -324,9 +329,9 @@ if __name__ == "__main__":
     ymax = max(tuple(ylst))
     print(ylst)
     print("\nNumber of recursive calls: {0}\nMaximum number: {1}".format(xmax,ymax))
-    plt.plot(xlst,ylst,'r--')
-    plt.axis([0,xmax,0,ymax])
-    plt.show()
+    # plt.plot(xlst,ylst,'r--')
+    # plt.axis([0,xmax,0,ymax])
+    # plt.show()
 
 
 ########################
@@ -345,19 +350,31 @@ def get_data(path, name):
 
     Returns: A list of lists, where each inner list is a pair of floats
     """
-    x = open('Assignment10/stockdata.txt','r')
-    contents = x.readlines
-    x.close()
-    return contents
+    # x = open(path+'/'+name,'r')
+    # contents = x.read()
+    # x.close()
+    with open(path+'/'+name) as f:
+        mylist = [tuple(map(float, i.split(','))) for i in f]
+    return mylist
 
 def mean(lst):
     return sum(lst)/len(lst)
 
 def sd(xlst):
-    pass
+    y = sum([(i-mean(xlst))**2 for i in xlst])
+    return 1/(len(xlst)-1) * y
 
 def r(x, y):
-    pass
+    a = 0
+    mx = mean(x)
+    my = mean(y)
+    sx = sd(x)
+    sy = sd(y)
+    g = 1/(len(x)-1)
+    for i in range(len(x)):
+        a += ((x[i]-mx)/sx)* ((y[i]-my)/sy)
+    return g * a
+
 
 
 if __name__ == "__main__":
@@ -370,7 +387,7 @@ if __name__ == "__main__":
     print("~"*30)
     data = get_data("Assignment10", "stockdata.txt")
     
-
+    print(data)
     xData = [i[0] for i in data]
     yData = [i[1] for i in data]
 
