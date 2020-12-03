@@ -59,7 +59,7 @@ class Binary:
         return Binary(self.b_to_d() * other.b_to_d())
 
     def __neg__(self):
-        return Binary(-1*self.val)
+        return Binary(-self.b_to_d())
     def __abs__(self):
         return Binary(abs(self.val))
 
