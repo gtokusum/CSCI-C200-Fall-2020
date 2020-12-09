@@ -1,6 +1,6 @@
 # Assignment 7 
 
-## Overall Score: 104/120 
+## Overall Score: 84/100 
 Commit hash used: 6cdff1afbd706781831514b73a8dbc580f144dec 
 
 ### Problem 1: 20/20
@@ -40,11 +40,6 @@ Commit hash used: 6cdff1afbd706781831514b73a8dbc580f144dec
 
 ### Problem 5: 20/20
 - Function: div_11 
-  - Test Results: 5/5
-
-
-### Problem 6: 20/20
-- Function: nn 
   - Test Results: 5/5
 
 
