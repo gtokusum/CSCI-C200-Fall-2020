@@ -60,7 +60,8 @@ class RPS_calculator:
         Parameter: A string representing RPN
         No return statement
         """
-        pass
+        self.exp = exp.split()
+        # super().__init__('RPS_calculator')
         
         
     def run(self):
@@ -70,8 +71,26 @@ class RPS_calculator:
         Parameter: No parameters
         Returns: A numberical value from the expression
         """
-        pass
-        
+        x = stack()
+        ops = {"+":(lambda a,b:a+b),"-":(lambda a,b:a-b),"*":(lambda a,b: a*b),"/":(lambda a,b: a/b),"abs":(lambda a: abs(a))}
+        for i in self.exp:
+            if i in ops:
+                if i != 'abs':    
+                    b = x.pop()
+                    a = x.pop()
+                    result = ops[i](a,b)
+                    x.push(result)
+                else:
+                    a = x.pop()
+                    result = ops[i](a)
+                    x.push(result)
+            # if i == 'abs':
+            #     c = x.pop()
+            #     result = ops[i](c)
+            else:
+                x.push(int(i))
+        return x.pop()
+                
 
     def __str__(self):
         """
@@ -118,7 +137,7 @@ def insert1():
 
     TODO: Complete the insert statement for row 1 of the table
     """
-    return ""
+    return "INSERT INTO G VALUES('A','B',1)" 
 
 def insert2():
     """
@@ -127,7 +146,7 @@ def insert2():
 
     TODO: Complete the insert statement for row 2 of the table
     """
-    return ""
+    return "INSERT INTO G VALUES('A','C',2)"
 
 def insert3():
     """
@@ -136,7 +155,7 @@ def insert3():
 
     TODO: Complete the insert statement for row 3 of the table
     """
-    return ""
+    return "INSERT INTO G VALUES('A','D',5)"
 
 def insert4():
     """
@@ -145,7 +164,7 @@ def insert4():
 
     TODO: Complete the insert statement for row 4 of the table
     """
-    return ""
+    return "INSERT INTO G VALUES('B','D',3)"
 
 def insert5():
     """
@@ -154,7 +173,7 @@ def insert5():
 
     TODO: Complete the insert statement for row 5 of the table
     """
-    return ""
+    return "INSERT INTO G VALUES('C','D',5)"
 
 
 def query1():
@@ -164,7 +183,7 @@ def query1():
 
     TODO: Complete the QUERY 1
     """
-    return ""
+    return "SELECT * FROM G"
 
 def query2():
     """
@@ -173,7 +192,7 @@ def query2():
 
     TODO: Complete the QUERY 2
     """
-    return ""
+    return "SELECT * FROM G WHERE Value > 2"
 
 def query3():
     """
@@ -182,7 +201,7 @@ def query3():
 
     TODO: Complete the QUERY 3
     """
-    return ""
+    return "SELECT * FROM G WHERE Value = 2"
 
 def query4():
     """
@@ -191,7 +210,7 @@ def query4():
 
     TODO: Complete the QUERY 4
     """
-    return ""
+    return "SELECT X,Y,Y,Value FROM G "
 
 def query5():
     """
@@ -200,7 +219,7 @@ def query5():
 
     TODO: Complete the QUERY 5
     """
-    return ""
+    return "SELECT SUM(Value)/COUNT(Value) FROM G"
 
 def query6():
     """
@@ -209,7 +228,7 @@ def query6():
 
     TODO: Complete the QUERY 6
     """
-    return ""
+    return "SELECT X,Y FROM G WHERE Value > (SELECT AVg(Value) FROM G) "
 
 
 if __name__=="__main__":
