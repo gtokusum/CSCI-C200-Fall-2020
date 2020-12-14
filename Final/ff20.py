@@ -211,8 +211,12 @@ def query3():
 
     TODO: Complete the QUERY 3
     """
-    return "SELECT * FROM G WHERE Value = 2"
-
+    # return "SELECT X,Y,(SELECT Y FROM G WHERE Value - (SELECT Value FROM G) = 2)"\
+        # " FROM G WHERE Value  = 2"
+    return "SELECT X,Y,(SELECT Y FROM G WHERE Value - (SELECT Value FROM G) = 2 or"\
+        " Value - (SELECT Value FROM G) = -2)"\
+            " FROM G WHERE Value = 2 or Value - (SELECT Value FROM G) = 2 or "\
+                "Value - (SELECT Value FROM G) = -2 "
 def query4():
     """
     THIS FUNCTION ONLY RETURNS A STRING. 
@@ -220,7 +224,10 @@ def query4():
 
     TODO: Complete the QUERY 4
     """
-    return "SELECT X,Y,Y,sum(Value) FROM G WHERE Value = 2"
+    return "SELECT X,Y,(SELECT Y FROM G WHERE Value - (SELECT Value FROM G) = 2)"\
+        ",(SELECT SUM(Value) FROM G WHERE Value - (SELECT Value FROM G) = 2)"\
+            "FROM G WHERE Value = 2"
+    
 
 def query5():
     """
