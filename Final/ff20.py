@@ -15,8 +15,18 @@ def convergence(matrix, vector, tau):
     - vector: An array (1-D) 
     - tau: numerical value
     """
-    pass
-
+    exp = 2
+    a = matrix
+    b = vector
+    current = np.matmul(a,b)
+    last = b
+    t = tau
+    while abs(LA.norm(current-last))>t:
+        last = current
+        current = np.matmul(a,current)
+        # exp += 1
+    return current
+    
 if __name__=="__main__":
     print("Problem 1")
     a = np.zeros((4,4,), dtype = float)
@@ -210,7 +220,7 @@ def query4():
 
     TODO: Complete the QUERY 4
     """
-    return "SELECT X,Y,Y,Value FROM G "
+    return "SELECT X,Y,Y,sum(Value) FROM G WHERE Value = 2"
 
 def query5():
     """
